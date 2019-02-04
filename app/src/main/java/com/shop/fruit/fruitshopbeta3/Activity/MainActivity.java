@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                                                 // Need register. [SK] -> Potrebna registracia.
                                                 alertDialog.dismiss();
                                                 // Create method
-                                                // 12:01
                                                 Toast.makeText(MainActivity.this, "Need register!", Toast.LENGTH_SHORT).show();
                                             }
                                         }
