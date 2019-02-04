@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Layout design UI -->
+    <!-- Styles - TEAL 50 AND Cyan 50 -->
+    <!-- URL == https://material.io/design/color/the-color-system.html#tools-for-picking-colors -->
+    <!-- Parent for this project Layout Theme.AppCompat.Light.NoActionBar -->
+    <!-- Parent  all project  Theme.AppCompat.Light.DialogWhenLarge -->
+    <!-- Relative layout Login page -->
+    <style name="relative_layout_login" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/fruit_shop_activity_login_background_img</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+    <!-- Button login page -->
+    <style name="button_login_intro" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_login_intro_background</item>
+        <item name="android:tileMode">repeat</item>
+        <item name="android:textColor">@color/color_text_button_continue_intro</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+    <!-- TextView build info -->
+    <style name="text_view_build_info" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:textColor">@color/colorTextViewBuildInfoText</item>
+        <item name="android:background">@color/colorTextViewBuildInfoBackground</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+</resources>

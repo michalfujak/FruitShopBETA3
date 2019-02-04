@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Design Teal 50 graphic styles -->
+<resources>
+    <color name="colorPrimary">#00897B</color>
+    <color name="colorPrimaryDark">#00695C</color>
+    <color name="colorAccent">#FFCA28</color>
+    <color name="colorNavigonBar">#00695C</color>
+    <!-- Layout [ RelativeLayout ] -->
+
+    <!-- Button [ Button login intro ]-->
+    <color name="color_text_button_continue_intro">#E0F7FA</color>
+
+    <!-- TextView [ textView build info ] -->
+    <color name="colorTextViewBuildInfoText">#B2DFDB</color>
+    <color name="colorTextViewBuildInfoBackground">#00000000</color>
+</resources>

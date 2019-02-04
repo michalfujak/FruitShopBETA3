@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spots Dialog Colors -->
+    <color name="SpotsDialogSilverDarkLoading">#d6d4d4</color>
+    <color name="SpotsDialogSilverBackground">#424242</color>
+</resources>

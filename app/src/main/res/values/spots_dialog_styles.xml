@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spots Dialog Styles -->
+    <style name="LoadingActivityForFacebook" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="android:background">@color/SpotsDialogSilverBackground</item>
+        <item name="DialogSpotColor">@color/SpotsDialogSilverDarkLoading</item>
+        <item name="DialogSpotCount">4</item>
+    </style>
+</resources>
