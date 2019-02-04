@@ -3,4 +3,20 @@
 Images Intro:
 
 
-![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images1.jpg "Logo Title Text 1")
+![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images1.jpg "images1")
+
+Facebook Activity Phone login Kit:
+
+![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images2.jpg "images2")
+
+
+Connect for Retrofit and WebREST:
+
+![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images3.jpg "images3")
+
+Done!:
+
+![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images4.jpg "images4")
+
+
+
