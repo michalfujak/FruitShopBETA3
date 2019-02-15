@@ -1,15 +1,18 @@
 package com.shop.fruit.fruitshopbeta3.Activity;
+// 18:08
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,10 +25,14 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
+import com.facebook.accountkit.ui.SkinManager;
+import com.facebook.accountkit.ui.UIManager;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shop.fruit.fruitshopbeta3.Modul.CheckUserResponse;
 import com.shop.fruit.fruitshopbeta3.R;
 import com.shop.fruit.fruitshopbeta3.Retrofit.IFruitShopAPI;
 import com.shop.fruit.fruitshopbeta3.Utils.Common;
+import com.szagurskii.patternedtextwatcher.PatternedTextWatcher;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -46,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
      * @Instance Component object
      */
     Button buttonContinue;
+    Button buttonRegister;
     AlertDialog alertDialog;
+    android.support.v7.app.AlertDialog.Builder alertV7Dialog;
+    MaterialEditText materialName;
+    MaterialEditText materialAddress;
+    MaterialEditText materialDateTime;
 
     /**
      * @FruitShopService interface
@@ -98,11 +110,11 @@ public class MainActivity extends AppCompatActivity {
             AccountKitLoginResult result = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
             if(result.getError() != null)
             {
-                Toast.makeText(this, "" + result.getError().getErrorType().getMessage() + "", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "" + result.getError().getErrorType().getMessage() + "", Toast.LENGTH_SHORT).show();
             }
             else if(result.wasCancelled())
             {
-                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
             }
             else
             {
@@ -114,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     // Get User and Phone CheckUser.php
                     AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
                         @Override
-                        public void onSuccess(Account account) {
+                        public void onSuccess(final Account account) {
                             // User phone current
                             myServiceFruit.checkUserExists(account.getPhoneNumber().toString())
                                     .enqueue(new Callback<CheckUserResponse>() {
@@ -131,8 +143,9 @@ public class MainActivity extends AppCompatActivity {
                                             {
                                                 // Need register. [SK] -> Potrebna registracia.
                                                 alertDialog.dismiss();
-                                                // Create method 
-                                                Toast.makeText(MainActivity.this, "Need register!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(MainActivity.this, "Register", Toast.LENGTH_SHORT).show();
+                                                // Create method
+                                                showRegisterDialogUser(account.getPhoneNumber().toString());
                                             }
                                         }
 
@@ -152,6 +165,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    /**
+     * @showRegisterDialogUser(phone)
+     * @param +phone
+     * @return false
+     */
+    private void showRegisterDialogUser(String phone)
+    {
+        // Parameter phone prenasame k registracii k spracovaniu.
+        alertV7Dialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
+        alertV7Dialog.setTitle(getString(R.string.titleRegisterAlertDialog));
+
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View registerAlertBuilder = layoutInflater.inflate(R.layout.register_dialog, null);
+        //
+        materialName = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_name);
+        materialAddress = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_address);
+        materialDateTime = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_datetime);
+
+        buttonRegister = (Button)registerAlertBuilder.findViewById(R.id.button_register_continue);
+        materialDateTime.addTextChangedListener(new PatternedTextWatcher("####-##-##"));
+        // Button Register Listener
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Continue
+                Toast.makeText(MainActivity.this, "Starting register", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Starting set View
+        alertV7Dialog.setView(registerAlertBuilder);
+        alertV7Dialog.show();
     }
 
     /**

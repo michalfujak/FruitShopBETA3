@@ -2,7 +2,7 @@
 <!-- All styles components -->
 <resources>
     <!-- Buttons -->
-    <string name="button_continue">Pokračovať</string>
+
     <!-- Info Build -->
     <string name="textview_build_info">Build: Beta 3.0.150  [ 4.02.2019 ]</string>
 </resources>

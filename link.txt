@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/48704592/account-kit-advanced-ui-customizing
+
+http://www.androidcodefinder.com/blog/2018/02/02/facebook-account-kit-sms-authentication-for-android/
