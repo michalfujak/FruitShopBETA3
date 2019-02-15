@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- All styles components -->
 <resources>
-    <!-- Buttons -->
-
     <!-- Info Build -->
     <string name="textview_build_info">Build: Beta 3.0.150  [ 4.02.2019 ]</string>
 </resources>
