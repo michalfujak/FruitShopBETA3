@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Errors -->
+    <style name="ToastRegisterErrors">
+        <item name="colorBackground">@color/colorToastRegisterBackgroundErrors</item>
+        <item name="textColor">@color/colorToastRegisterTextFIllErrors</item>
+        <item name="iconLeft">@drawable/ic_error_24dp</item>
+        <item name="length">LONG</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="strokeColor">@color/colorToastRegisterBorderErrors</item>
+    </style>
+    <!-- Warning -->
+    <style name="ToastRegisterWarning">
+        <item name="colorBackground">@color/colorToastRegisterBackgroundWarning</item>
+        <item name="textColor">@color/colorToastRegisterTextFIllWarning</item>
+        <item name="iconLeft">@drawable/ic_warning_black_24dp</item>
+        <item name="length">LONG</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="strokeColor">@color/colorToastRegisterBorderWarning</item>
+    </style>
+    <!-- Done -->
+    <style name="ToastRegisterDone">
+        <item name="colorBackground">@color/colorToastRegisterBackgroundDone</item>
+        <item name="textColor">@color/colorToastRegisterTextFIllDone</item>
+        <item name="iconLeft">@drawable/ic_done_24dp</item>
+        <item name="length">LONG</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="strokeColor">@color/colorToastRegisterBorderDone</item>
+    </style>
+    <!-- Information -->
+    <style name="ToastRegisterInformations">
+        <item name="colorBackground">@color/colorToastRegisterBackgroundInformation</item>
+        <item name="textColor">@color/colorToastRegisterTextFIllInformation</item>
+        <item name="iconLeft">@drawable/ic_info_24dp</item>
+        <item name="length">LONG</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="strokeColor">@color/colorToastRegisterBorderInformation</item>
+    </style>
+</resources>

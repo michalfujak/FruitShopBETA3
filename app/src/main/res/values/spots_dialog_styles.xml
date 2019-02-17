@@ -7,4 +7,11 @@
         <item name="DialogSpotColor">@color/SpotsDialogSilverDarkLoading</item>
         <item name="DialogSpotCount">4</item>
     </style>
+    <!-- Spots Dialog Register -->
+    <style name="LoadingActivityRegister" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="android:background">@color/SpotsDialogSilverBackground</item>
+        <item name="DialogSpotColor">@color/SpotsDialogSilverDarkLoading</item>
+        <item name="DialogSpotCount">4</item>
+    </style>
 </resources>

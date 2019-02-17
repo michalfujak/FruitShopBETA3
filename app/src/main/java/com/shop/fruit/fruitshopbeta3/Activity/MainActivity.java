@@ -1,5 +1,4 @@
 package com.shop.fruit.fruitshopbeta3.Activity;
-// 18:08
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,8 +27,10 @@ import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.facebook.accountkit.ui.SkinManager;
 import com.facebook.accountkit.ui.UIManager;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shop.fruit.fruitshopbeta3.Modul.CheckUserResponse;
+import com.shop.fruit.fruitshopbeta3.Modul.User;
 import com.shop.fruit.fruitshopbeta3.R;
 import com.shop.fruit.fruitshopbeta3.Retrofit.IFruitShopAPI;
 import com.shop.fruit.fruitshopbeta3.Utils.Common;
@@ -54,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
      */
     Button buttonContinue;
     Button buttonRegister;
-    AlertDialog alertDialog;
-    android.support.v7.app.AlertDialog.Builder alertV7Dialog;
+    AlertDialog alertDialog;                                        // android.app.AlertDialog
+    AlertDialog alertDialogRegisterWaiting;                         // android.app.AlertDialog
+    android.support.v7.app.AlertDialog.Builder alertV7Builder;       // android.support.v7.app.AlertDialog.Builder
     MaterialEditText materialName;
     MaterialEditText materialAddress;
     MaterialEditText materialDateTime;
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                             {
                                                 // Need register. [SK] -> Potrebna registracia.
                                                 alertDialog.dismiss();
-                                                Toast.makeText(MainActivity.this, "Register", Toast.LENGTH_SHORT).show();
+                                                StyleableToast.makeText(MainActivity.this, "Register" , R.style.ToastRegisterInformations).show();
                                                 // Create method
                                                 showRegisterDialogUser(account.getPhoneNumber().toString());
                                             }
@@ -172,11 +175,11 @@ public class MainActivity extends AppCompatActivity {
      * @param +phone
      * @return false
      */
-    private void showRegisterDialogUser(String phone)
+    private void showRegisterDialogUser(final String phone)
     {
         // Parameter phone prenasame k registracii k spracovaniu.
-        alertV7Dialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
-        alertV7Dialog.setTitle(getString(R.string.titleRegisterAlertDialog));
+        alertV7Builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
+        alertV7Builder.setTitle(getString(R.string.titleRegisterAlertDialog));
 
         LayoutInflater layoutInflater = this.getLayoutInflater();
         View registerAlertBuilder = layoutInflater.inflate(R.layout.register_dialog, null);
@@ -187,18 +190,64 @@ public class MainActivity extends AppCompatActivity {
 
         buttonRegister = (Button)registerAlertBuilder.findViewById(R.id.button_register_continue);
         materialDateTime.addTextChangedListener(new PatternedTextWatcher("####-##-##"));
+        // nastavenie View.Card
+        alertV7Builder.setView(registerAlertBuilder);
+        //
+        // Initializable create null dialog
+        // Preniest do noveho objektu pre pripad zavretie view.card po stlaceni registracie.
+        final android.support.v7.app.AlertDialog dialog = alertV7Builder.create();
         // Button Register Listener
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Continue
-                Toast.makeText(MainActivity.this, "Starting register", Toast.LENGTH_SHORT).show();
+                //
+                // dialog.dissmiss...
+                dialog.dismiss();
+                if(TextUtils.isEmpty(materialName.getText().toString()))
+                {
+                    StyleableToast.makeText(MainActivity.this, getString(R.string.registerEmptyNameToast), R.style.ToastRegisterErrors).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(materialAddress.getText().toString()))
+                {
+                    StyleableToast.makeText(MainActivity.this, getString(R.string.registerEmptyAddressToast), R.style.ToastRegisterErrors).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(materialDateTime.getText().toString()))
+                {
+                    StyleableToast.makeText(MainActivity.this, getString(R.string.registerEmptyDateTimeToast), R.style.ToastRegisterErrors).show();
+                    return;
+                }
+                alertDialogRegisterWaiting = new SpotsDialog.Builder().setContext(MainActivity.this).setTheme(R.style.LoadingActivityRegister).build();
+                alertDialogRegisterWaiting.show();
+                alertDialogRegisterWaiting.setMessage(getString(R.string.ActivityPleaseWaitingInitializableRegister));
+                // Active Service
+                myServiceFruit.registerNewUser(phone,
+                                               materialName.getText().toString(),
+                                               materialDateTime.getText().toString(),
+                                               materialAddress.getText().toString())
+                                               .enqueue(new Callback<User>() {
+                                                   @Override
+                                                   public void onResponse(Call<User> call, Response<User> response) {
+                                                       alertDialogRegisterWaiting.dismiss();
+                                                       User userRegister = response.body();
+                                                       if(TextUtils.isEmpty(userRegister.getError_msg()))
+                                                       {
+                                                           StyleableToast.makeText(MainActivity.this, getString(R.string.registerToastableUserRegisterDone) , R.style.ToastRegisterDone).show();
+                                                       }
+                                                   }
+
+                                                   @Override
+                                                   public void onFailure(Call<User> call, Throwable t) {
+                                                       alertDialogRegisterWaiting.dismiss();
+                                                   }
+                                               });
             }
         });
 
         // Starting set View
-        alertV7Dialog.setView(registerAlertBuilder);
-        alertV7Dialog.show();
+        // Zobrazenie celeho view.card aktivity.
+        dialog.show();
     }
 
     /**

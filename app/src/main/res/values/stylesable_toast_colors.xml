@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorToastRegisterBackgroundErrors">#D32F2F</color>                                <!-- 700 -->
+    <color name="colorToastRegisterBackgroundWarning">#FBC02D</color>                               <!-- 700 -->
+    <color name="colorToastRegisterBackgroundInformation">#303F9F</color>                           <!-- 700 -->
+    <color name="colorToastRegisterBackgroundDone">#388E3C</color>                                  <!-- 700 -->
+    <!-- TextColors -->
+    <color name="colorToastRegisterTextFIllErrors">#EEEEEE</color>                                  <!-- 200 -->
+    <color name="colorToastRegisterTextFIllWarning">#EEEEEE</color>                                 <!-- 200 -->
+    <color name="colorToastRegisterTextFIllInformation">#EEEEEE</color>                             <!-- 200 -->
+    <color name="colorToastRegisterTextFIllDone">#EEEEEE</color>                                    <!-- 200 -->
+    <!-- BorderColors -->
+    <color name="colorToastRegisterBorderErrors">#FFCDD2</color>                                    <!-- 100 -->
+    <color name="colorToastRegisterBorderWarning">#FFF9C4</color>                                   <!-- 100 -->
+    <color name="colorToastRegisterBorderInformation">#C5CAE9</color>                               <!-- 100 -->
+    <color name="colorToastRegisterBorderDone">#C8E6C9</color>                                      <!-- 100 -->
+</resources>
