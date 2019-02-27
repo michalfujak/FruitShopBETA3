@@ -14,7 +14,7 @@ Connect for Retrofit and WebREST:
 
 ![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images3.jpg "images3")
 
-Done!:
+Register:
 
 ![alt text](https://github.com/michalfujak/FruitShopBETA3/blob/master/screenshot/images4.jpg "images4")
 
