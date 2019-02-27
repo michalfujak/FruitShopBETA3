@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     private void showRegisterDialogUser(final String phone)
     {
         // Parameter phone prenasame k registracii k spracovaniu.
-        alertV7Builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
+        alertV7Builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this, R.style.register_card_view);
         alertV7Builder.setTitle(getString(R.string.titleRegisterAlertDialog));
 
         LayoutInflater layoutInflater = this.getLayoutInflater();

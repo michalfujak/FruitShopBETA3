@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Card.view styles -->
+    <style name="register_card_view" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/register_dialog_card_background</item>
+        <item name="dialogCornerRadius">6dp</item>
+        <item name="android:textColor">@color/register_dialog_card_text_color</item>
+    </style>
+    <style name="materialEditTextFields" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/materialEditTextBackground</item>
+        <item name="android:textColor">@color/materialEditTextTextColor</item>
+        <item name="android:colorAccent">@color/materialEditTextTextLinkColor</item>
+    </style>
+</resources>

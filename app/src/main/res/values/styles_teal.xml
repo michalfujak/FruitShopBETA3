@@ -18,6 +18,13 @@
         <item name="android:textColor">@color/color_text_button_continue_intro</item>
         <item name="android:layout_margin">5dp</item>
     </style>
+    <!-- Register button AlertDialog.Builder.CardView -->
+    <style name="button_register_alert_builder" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_register_alert_builder_background</item>
+        <item name="android:tileMode">repeat</item>
+        <item name="android:textColor">@color/color_register_button_alert_builder_text</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
     <!-- TextView build info -->
     <style name="text_view_build_info" parent="Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textColor">@color/colorTextViewBuildInfoText</item>

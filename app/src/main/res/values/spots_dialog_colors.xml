@@ -2,5 +2,5 @@
 <resources>
     <!-- Spots Dialog Colors -->
     <color name="SpotsDialogSilverDarkLoading">#d6d4d4</color>
-    <color name="SpotsDialogSilverBackground">#424242</color>
+    <color name="SpotsDialogSilverBackground">#00695C</color>                                       <!-- 800 teal 50 -->
 </resources>

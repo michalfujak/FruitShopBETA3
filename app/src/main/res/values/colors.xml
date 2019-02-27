@@ -8,9 +8,19 @@
     <!-- Layout [ RelativeLayout ] -->
 
     <!-- Button [ Button login intro ]-->
-    <color name="color_text_button_continue_intro">#E0F7FA</color>
+    <color name="color_text_button_continue_intro">#B2DFDB</color>                                  <!-- 100 teal 50 -->
+    <color name="color_register_button_alert_builder_text">#00695C</color>                          <!-- 800 teal 50 -->
 
     <!-- TextView [ textView build info ] -->
     <color name="colorTextViewBuildInfoText">#B2DFDB</color>
     <color name="colorTextViewBuildInfoBackground">#00000000</color>
+    <!-- Card.View colors -->
+    <color name="register_dialog_card_background">#00695C</color>                                   <!-- 800 teal 50 -->
+    <color name="register_dialog_card_text_color">#E0F2F1</color>                                   <!-- 000 teal 50 -->
+    <!-- Design -->
+    <!-- MaterialEditText colors -->
+    <color name="materialEditTextBorderColor">#004D40</color>                                       <!-- 900 teal 50 -->
+    <color name="materialEditTextBackground">#E0F2F1</color>                                        <!-- 000 teal 50 -->
+    <color name="materialEditTextTextColor">#00897B</color>                                         <!-- 600 teal 50 -->
+    <color name="materialEditTextTextLinkColor">#00695C</color>                                     <!-- 800 teal 50 -->
 </resources>
