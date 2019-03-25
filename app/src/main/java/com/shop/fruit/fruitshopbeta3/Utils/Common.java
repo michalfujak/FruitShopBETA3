@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 
 public class Common {
     //
-    private static final String BASE_URL = "http://www.android.dev-droid.sk/android/";
+    private static final String BASE_URL = "http://fruit-shop.dev-droid.sk/android/";
 
     public static IFruitShopAPI getAPI()
     {

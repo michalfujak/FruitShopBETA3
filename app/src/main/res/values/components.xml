@@ -2,5 +2,5 @@
 <!-- All styles components -->
 <resources>
     <!-- Info Build -->
-    <string name="textview_build_info">Build: Beta 3.0.150  [ 23.02.2019 ]</string>
+    <string name="textview_build_info">Build: Beta 3.0.150  [ 26.02.2019 ]</string>
 </resources>

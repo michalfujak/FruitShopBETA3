@@ -5,8 +5,10 @@ public class User {
     // Variable
     private String phone;
     private String name;
+    private String lastname;
     private String address;
     private String birthdate;
+    private String email;
     private String error_msg;
 
     public User() {
@@ -53,5 +55,21 @@ public class User {
 
     public void setError_msg(String error_msg) {
         this.error_msg = error_msg;
+    }
+
+    public String getLastName() {
+        return lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     MaterialEditText materialName;
     MaterialEditText materialAddress;
     MaterialEditText materialDateTime;
+    MaterialEditText materialLastname;
+    MaterialEditText materialEmail;
 
     /**
      * @FruitShopService interface
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                                             {
                                                 // Need register. [SK] -> Potrebna registracia.
                                                 alertDialog.dismiss();
-                                                StyleableToast.makeText(MainActivity.this, "Register" , R.style.ToastRegisterInformations).show();
+                                                // StyleableToast.makeText(MainActivity.this, "Register" , R.style.ToastRegisterInformations).show();
                                                 // Create method
                                                 showRegisterDialogUser(account.getPhoneNumber().toString());
                                             }
@@ -188,6 +190,9 @@ public class MainActivity extends AppCompatActivity {
         materialName = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_name);
         materialAddress = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_address);
         materialDateTime = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_datetime);
+        materialLastname = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_name_last);
+        materialEmail = (MaterialEditText)registerAlertBuilder.findViewById(R.id.register_email);
+        // Continue
 
         buttonRegister = (Button)registerAlertBuilder.findViewById(R.id.button_register_continue);
         materialDateTime.addTextChangedListener(new PatternedTextWatcher("####-##-##"));
@@ -219,14 +224,27 @@ public class MainActivity extends AppCompatActivity {
                     StyleableToast.makeText(MainActivity.this, getString(R.string.registerEmptyDateTimeToast), R.style.ToastRegisterErrors).show();
                     return;
                 }
+                if(TextUtils.isEmpty(materialLastname.getText().toString()))
+                {
+                    StyleableToast.makeText(MainActivity.this, getString(R.string.registerEmptyPriezviskoToast), R.style.ToastRegisterErrors).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(materialEmail.getText().toString()))
+                {
+                    StyleableToast.makeText(MainActivity.this, getString(R.string.registerEmailCharsEmail), R.style.ToastRegisterErrors).show();
+                    return;
+                }
                 alertDialogRegisterWaiting = new SpotsDialog.Builder().setContext(MainActivity.this).setTheme(R.style.LoadingActivityRegister).build();
                 alertDialogRegisterWaiting.show();
                 alertDialogRegisterWaiting.setMessage(getString(R.string.ActivityPleaseWaitingInitializableRegister));
                 // Active Service
                 myServiceFruit.registerNewUser(phone,
                                                materialName.getText().toString(),
+                                               materialLastname.getText().toString(),
                                                materialDateTime.getText().toString(),
-                                               materialAddress.getText().toString())
+                                               materialAddress.getText().toString(),
+                                               materialEmail.getText().toString()
+                                               )
                                                .enqueue(new Callback<User>() {
                                                    @Override
                                                    public void onResponse(Call<User> call, Response<User> response) {
