@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Design Teal 50 graphic styles -->
 <resources>
-    <color name="colorPrimary">#00897B</color>
-    <color name="colorPrimaryDark">#00695C</color>
-    <color name="colorAccent">#FFCA28</color>
-    <color name="colorNavigonBar">#00695C</color>
+    <color name="colorPrimary">#00695C</color>
+    <color name="colorPrimaryDark">#00695C</color>                                                  <!-- 800 teal 50 -->
+    <color name="colorAccent">#FFCA28</color>                                                       <!-- 800 teal 50 -->
+    <color name="colorNavigonBar">#00695C</color>                                                   <!-- 800 teal 50 -->
     <!-- Layout [ RelativeLayout ] -->
 
     <!-- Button [ Button login intro ]-->
@@ -23,4 +23,11 @@
     <color name="materialEditTextBackground">#E0F2F1</color>                                        <!-- 000 teal 50 -->
     <color name="materialEditTextTextColor">#00897B</color>                                         <!-- 600 teal 50 -->
     <color name="materialEditTextTextLinkColor">#00695C</color>                                     <!-- 800 teal 50 -->
+    <!-- HomeActivity Drawer menu -->
+    <color name="drawerMenuIconsColor">#00695C</color>                                              <!-- 800 teal 50 -->
+    <color name="drawermenuTextColor">#00695C</color>                                               <!-- 800 teal 50 -->
+    <!-- Drawer FAB Button background -->
+    <color name="drawerMenuFagIconsColor">#00695C</color>                                           <!-- 800 teal 50 -->
+    <!-- Backgrounds global -->
+    <color name="drawerMenuBackgroundLayouts">#E0F2F1</color>                                       <!-- 100 teal 50 -->
 </resources>

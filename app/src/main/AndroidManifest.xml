@@ -12,10 +12,17 @@
         android:roundIcon="@mipmap/ic_fruit_shop_icon_round"
         android:supportsRtl="true"
         android:theme="@style/GreenTheme">
+
         <!-- facebook application data -->
-        <meta-data android:name="com.facebook.accountkit.ApplicationName" android:value="@string/app_name" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/FACEBOOK_APP_ID" />
-        <meta-data android:name="com.facebook.accountkit.ClientToken" android:value="@string/ACCOUNT_KIT_TOKEN_CLIENT" />
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/FACEBOOK_APP_ID" />
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/ACCOUNT_KIT_TOKEN_CLIENT" />
         <!-- Activity facebook -->
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
         <activity android:name=".Activity.MainActivity">
@@ -25,6 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/GreenTheme"></activity>
     </application>
 
 </manifest>

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +24,6 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
-import com.facebook.accountkit.ui.SkinManager;
-import com.facebook.accountkit.ui.UIManager;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shop.fruit.fruitshopbeta3.Modul.CheckUserResponse;
@@ -86,6 +82,72 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // DISABLE  KeyHashPrint();
+        // AutoLogin Facebook still :)
+        if(AccountKit.getCurrentAccessToken() != null)
+        {
+            // SESSION Starting...
+            // AutoLogin Session still
+            // AlertDialog.Spots V7 < Warning not AlertDialog.V4 >
+            alertDialog = new SpotsDialog.Builder().setContext(MainActivity.this).setTheme(R.style.LoadingActivityForFacebook).build();
+            alertDialog.show();
+            alertDialog.setMessage(getString(R.string.ActivityPleaseWaitingInitializableAlert));
+            AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                @Override
+                public void onSuccess(final Account account) {
+                    // User phone current
+                    myServiceFruit.checkUserExists(account.getPhoneNumber().toString())
+                            .enqueue(new Callback<CheckUserResponse>() {
+                                @Override
+                                public void onResponse(Call<CheckUserResponse> call, Response<CheckUserResponse> response) {
+                                    CheckUserResponse checkUserResponse = response.body();
+                                    if(checkUserResponse.isExists())
+                                    {
+                                        // Fetch information User
+                                        myServiceFruit.getInformationUser(account.getPhoneNumber().toString())
+                                                .enqueue(new Callback<User>() {
+                                                    @Override
+                                                    public void onResponse(Call<User> call, Response<User> response) {
+                                                        // If user already, just new Activity [SK] -> Ak uzivatel existuje, vytvorit novu aktivitu.
+                                                        alertDialog.dismiss();
+                                                        // User < not NULL >
+                                                        Common.currentUser = response.body(); // fixed
+                                                        Toast.makeText(MainActivity.this, "Done!", Toast.LENGTH_SHORT).show();
+                                                        // Login complete!
+                                                        // Login complete < Blocked && integration source code >
+                                                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                                        finish();
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<User> call, Throwable t) {
+                                                        StyleableToast.makeText(MainActivity.this, t.getMessage(), R.style.ToastRegisterErrors).show();
+                                                    }
+                                                });
+                                    }
+                                    else
+                                    {
+                                        // Need register. [SK] -> Potrebna registracia.
+                                        alertDialog.dismiss();
+                                        // StyleableToast.makeText(MainActivity.this, "Register" , R.style.ToastRegisterInformations).show();
+                                        // Create method
+                                        showRegisterDialogUser(account.getPhoneNumber().toString());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<CheckUserResponse> call, Throwable t) {
+
+                                }
+                            });
+                }
+
+                @Override
+                public void onError(AccountKitError accountKitError) {
+                    // User phone error
+                    Log.d("ERROR_FB", accountKitError.getErrorType().getMessage());
+                }
+            });
+        }
     }
 
     /**
@@ -141,9 +203,25 @@ public class MainActivity extends AppCompatActivity {
                                             CheckUserResponse checkUserResponse = response.body();
                                             if(checkUserResponse.isExists())
                                             {
-                                                // If user already, just new Activity [SK] -> Ak uzivatel existuje, vytvorit novu aktivitu.
-                                                alertDialog.dismiss();
-                                                Toast.makeText(MainActivity.this, "Done!", Toast.LENGTH_SHORT).show();
+                                                // Fetch information User
+                                                myServiceFruit.getInformationUser(account.getPhoneNumber().toString())
+                                                        .enqueue(new Callback<User>() {
+                                                            @Override
+                                                            public void onResponse(Call<User> call, Response<User> response) {
+                                                                // If user already, just new Activity [SK] -> Ak uzivatel existuje, vytvorit novu aktivitu.
+                                                                alertDialog.dismiss();
+                                                                Toast.makeText(MainActivity.this, "Done!", Toast.LENGTH_SHORT).show();
+                                                                // Login complete!
+                                                                // Login complete < Blocked && integration source code >
+                                                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                                                finish();
+                                                            }
+
+                                                            @Override
+                                                            public void onFailure(Call<User> call, Throwable t) {
+                                                                StyleableToast.makeText(MainActivity.this, t.getMessage(), R.style.ToastRegisterErrors).show();
+                                                            }
+                                                        });
                                             }
                                             else
                                             {
@@ -157,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onFailure(Call<CheckUserResponse> call, Throwable t) {
-
+                                            // Doprogramovat error message
                                         }
                                     });
                         }
@@ -253,6 +331,12 @@ public class MainActivity extends AppCompatActivity {
                                                        if(TextUtils.isEmpty(userRegister.getError_msg()))
                                                        {
                                                            StyleableToast.makeText(MainActivity.this, getString(R.string.registerToastableUserRegisterDone) , R.style.ToastRegisterDone).show();
+                                                           // < Blocked register done! && Integration source code >
+                                                           Common.currentUser = response.body();
+                                                           // SK, naplnenie objektu <user.class> pre spracovanie JSON body...
+                                                           // registration complete!
+                                                           startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                                           finish();
                                                        }
                                                    }
 
