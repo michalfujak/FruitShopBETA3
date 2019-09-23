@@ -1,6 +1,7 @@
 package com.shop.fruit.fruitshopbeta3.Retrofit;
 
 import com.shop.fruit.fruitshopbeta3.Modul.Banner;
+import com.shop.fruit.fruitshopbeta3.Modul.Category;
 import com.shop.fruit.fruitshopbeta3.Modul.CheckUserResponse;
 import com.shop.fruit.fruitshopbeta3.Modul.User;
 
@@ -29,6 +30,10 @@ public interface IFruitShopAPI {
 
     @GET("getBanner.php")
     Observable<List<Banner>> getBanner();
+
+    // Loading category menu for php
+    @GET("getMenu.php")
+    Observable<List<Category>> getMenu();
 
 }
 

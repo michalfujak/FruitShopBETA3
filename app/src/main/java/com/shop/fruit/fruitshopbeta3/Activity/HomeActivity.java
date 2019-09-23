@@ -3,6 +3,8 @@ package com.shop.fruit.fruitshopbeta3.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,7 +20,9 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.shop.fruit.fruitshopbeta3.Adapter.CategoryAdapter;
 import com.shop.fruit.fruitshopbeta3.Modul.Banner;
+import com.shop.fruit.fruitshopbeta3.Modul.Category;
 import com.shop.fruit.fruitshopbeta3.R;
 import com.shop.fruit.fruitshopbeta3.Retrofit.IFruitShopAPI;
 import com.shop.fruit.fruitshopbeta3.Utils.Common;
@@ -42,6 +46,8 @@ public class HomeActivity extends AppCompatActivity
     IFruitShopAPI myFruitShop;
     // Rxjava
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    // Adapter Category
+    RecyclerView recyclerView_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,10 @@ public class HomeActivity extends AppCompatActivity
         myFruitShop = Common.getAPI();
         // Slider object
         sliderLayoutHome = (SliderLayout)findViewById(R.id.homeSlider);
+        //
+        recyclerView_menu = (RecyclerView)findViewById(R.id.top_products_views);
+        recyclerView_menu.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView_menu.setHasFixedSize(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +90,12 @@ public class HomeActivity extends AppCompatActivity
         // Set text
         objTxtName.setText(Common.currentUser.getName());
         objTxtPhone.setText(Common.currentUser.getPhone());
+        //
         // Get Banner starting
         getBannerImageView();
+        //
+        // Get menu starting
+        getMenu();
     }
 
     /**
@@ -100,6 +114,33 @@ public class HomeActivity extends AppCompatActivity
             }
         })
         );
+    }
+
+    /**
+     * getMenu
+     */
+    private void getMenu()
+    {
+        compositeDisposable.add(myFruitShop.getMenu()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<List<Category>>() {
+            @Override
+            public void accept(List<Category> categories) throws Exception {
+                displayMenuView(categories);
+            }
+        })
+        );
+    }
+
+    /**
+     * @displayMenuView(param)
+     * @param categories
+     */
+    private void displayMenuView(List<Category> categories) {
+        //
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this, categories);
+        recyclerView_menu.setAdapter(categoryAdapter);
     }
 
     // Call destroy

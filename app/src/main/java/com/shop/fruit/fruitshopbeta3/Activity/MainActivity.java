@@ -211,6 +211,10 @@ public class MainActivity extends AppCompatActivity {
                                                                 // If user already, just new Activity [SK] -> Ak uzivatel existuje, vytvorit novu aktivitu.
                                                                 alertDialog.dismiss();
                                                                 Toast.makeText(MainActivity.this, "Done!", Toast.LENGTH_SHORT).show();
+                                                                // Fixed first time crash
+                                                                // <Fix code [ 23.09.2019 ]>
+                                                                Common.currentUser = response.body();
+
                                                                 // Login complete!
                                                                 // Login complete < Blocked && integration source code >
                                                                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
